@@ -7,16 +7,17 @@ var PlayerView = Backbone.View.extend({
 
   initialize: function() { 
     console.log(this.el);
-    this.el.addEventListener('ended', function(){
-      console.log('ended');
-      this.el.ended = true;
-    }, this);
+    // this.el.addEventListener('ended', function(){
+    //   console.log('dom ended');
+    //   this.model.ended();
+    // }, this);
   },
 
   events: {
     'ended': function() {
-      console.log('ended');
-      this.model.dequeue();
+      // console.log('backbone ended');
+      console.log(this.model);
+      this.model.ended();
       // dequeue and play next song
     }
   },
@@ -26,9 +27,9 @@ var PlayerView = Backbone.View.extend({
     this.render();
   },
 
-  ended: function(){
-    this.trigger('ended', this);
-  },
+  // ended: function(){
+  //   this.trigger('ended', this);
+  // },
 
   render: function(){
     return this.$el.attr('src', this.model ? this.model.get('url') : '');
